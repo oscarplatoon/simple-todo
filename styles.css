@@ -1,0 +1,23 @@
+mark {
+  background-color: orange;
+  color: black;
+}
+yvalue {
+  font-size: medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: antiquewhite;
+  border: 2px solid white;
+  font-weight: 400;
+}
+options {
+  font-family: sans-serif;
+  font-size: small;
+  background-color: orange;
+  border: 2px solid orange;
+  font-weight: 100;
+}
+login {
+  float: right;
+  font-size: small;
+  font-weight: 100;
+}
