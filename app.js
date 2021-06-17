@@ -1,21 +1,3 @@
-var storedItems = []
-console.log(JSON.parse(localStorage.getItem('toDoItems')))
-// console.log(storedItems)
-/* This adds the text field as an item in the storedItems && the localStorage using JSON methods.
-*/
-
-
-const addItem = () => {
-  let toDoItem = document.getElementById('add-item-text').value;
-  // Used to generate unique keys for local storage:
-  numberItems = localStorage.length;
-  if(toDoItem.length === 0) {
-    return
-  }
-
-  localStorage.setItem('item '+(numberItems+1), toDoItem)
-}
-
 document.getElementById('submit-button').onclick = () => {
   console.log('CLICKED')
   console.log('adding item')
@@ -25,6 +7,19 @@ document.getElementById('submit-button').onclick = () => {
   document.getElementById('add-item-text').value = ""
 }
 
+// Adds item to local storage.
+const addItem = () => {
+  let toDoItem = document.getElementById('add-item-text').value;
+  // Used to generate unique keys for local storage:
+  numberItems = localStorage.length;
+  if(toDoItem.length === 0) {
+    return null
+  }
+  localStorage.setItem('item '+(numberItems+1), toDoItem)
+}
+
+
+//
 const updateList = ()=> {
   let unorderedList = document.getElementById('todo-list')
   // Empties the html list of old items.
@@ -33,34 +28,31 @@ const updateList = ()=> {
       unorderedList.removeChild(unorderedList.firstChild)
     }
   }
-
+  
   // Begin building the list items from storedItems array to append back to the ul
-  for(let i = 0; i < storedItems.length; i++) {
+  
+  for(let i = 0; i <= localStorage.length; i++) {
+    //This builds the LI to add to the list
     let newListItem = document.createElement("li")
-    newText = document.createTextNode(storedItems[i])
-    newListItem.appendChild(newText)
+    let newCheckBox = document.createElement('input')
+    newCheckBox.setAttribute ('type', 'checkbox')
+    newCheckBox.setAttribute('id', i)
+    newCheckBox.addEventListener('click', function() {
+      alert(`${i}`)
+    })
+    // This holds the text with an ID (important for strike through)
+    newPara = document.createElement('p')
+    newText = document.createTextNode(localStorage.getItem(`item ${i}`))
+    newPara.setAttribute('id', i)
+    newPara.appendChild(newText)
+    newListItem.appendChild(newCheckBox)
+    newListItem.appendChild(newPara)
     unorderedList.appendChild(newListItem)
-  }
+  } 
 }
 
-/*
-  let newElem = document.createElement('LI');
-  const numText = document.createTextNode(number)
-  newElem.appendChild(numText)
-  const numList = document.getElementById('guess-list')
-  numList.appendChild(newElem)
-  }
-*/
+const strikeText = (id) => {
+  alert(`${id}`)
+}
 
-/**
- *
- var names = [];
- names[0] = prompt("New member name?");
- localStorage.setItem("names", JSON.stringify(names));
-
- //...
- var storedNames = JSON.parse(localStorage.getItem("names"));
-
- localstorage.names = JSON.stringify(names);
- var storedNames = JSON.parse(localStorage.names);
- */
+updateList()
