@@ -1,13 +1,48 @@
-let storedNames = []
+var storedItems = []
+/* This adds the text field as an item in the storedItems && the localStorage using JSON methods.
+*/
 const addItem = () => {
   let toDoItem = document.getElementById('add-item-text').value;
-  storedNames.push(toDoItem);
-  (console.log(storedNames))
+  storedItems.push(toDoItem);
   localStorage.setItem('toDoItems', JSON.stringify(toDoItem))
-  console.log(JSON.parse(localStorage.getItem('toDoItems')))
-  return storedNames
-
+  return storedItems
 }
+
+document.getElementById('submit-button').onclick = () => {
+  console.log('CLICKED')
+  addItem();
+  updateList();
+}
+
+const updateList = ()=> {
+
+  console.log(storedItems);
+  let unorderedList = document.getElementById('todo-list')
+  console.log(unorderedList)
+  // Empties the html list of old items.
+  if (unorderedList) {
+    while(unorderedList.firstChild) {
+      unorderedList.removeChild(unorderedList.firstChild)
+    }
+  }
+
+  // Begin building the list items from storedItems array to append back to the ul
+  for(let i = 0; i < storedItems.length; i++) {
+    let newListItem = document.createElement("li")
+    newText = document.createTextNode(storedItems[i])
+    newListItem.appendChild(newText)
+    unorderedList.appendChild(newListItem)
+  }
+}
+
+/*
+  let newElem = document.createElement('LI');
+  const numText = document.createTextNode(number)
+  newElem.appendChild(numText)
+  const numList = document.getElementById('guess-list')
+  numList.appendChild(newElem)
+  }
+*/
 
 /**
  *
