@@ -2,3 +2,7 @@ body {
   justify-content: left;
   align-items: center;
 }
+
+#todo-list {
+  list-style-type: none;
+}

@@ -36,23 +36,36 @@ const updateList = ()=> {
     let newListItem = document.createElement("li")
     let newCheckBox = document.createElement('input')
     newCheckBox.setAttribute ('type', 'checkbox')
-    newCheckBox.setAttribute('id', i)
-    newCheckBox.addEventListener('click', function() {
-      alert(`${i}`)
+    newCheckBox.setAttribute('id', `check ${i}`)
+    newCheckBox.addEventListener('change', function() {
+      if(this.checked) {
+        //grab the ID, pass it in to a "make text strike" func
+        strikeText(i)
+      } else {
+        //grab the ID, pass it to a make text normal func
+        normalText(i)
+      }
     })
     // This holds the text with an ID (important for strike through)
     newPara = document.createElement('p')
+    newPara.setAttribute('id', `para ${i}`)
     newText = document.createTextNode(localStorage.getItem(`item ${i}`))
-    newPara.setAttribute('id', i)
     newPara.appendChild(newText)
     newListItem.appendChild(newCheckBox)
     newListItem.appendChild(newPara)
     unorderedList.appendChild(newListItem)
-  } 
+  }
 }
 
 const strikeText = (id) => {
-  alert(`${id}`)
+  strikePara = document.getElementById(`para ${id}`)
+  strikePara.style.textDecoration = 'line-through'
+  // text = strikePara.innerHTML //strikePara.firstChild.style.textDecoration('line-through')
+}
+
+const normalText = (id) => {
+  normalPara = document.getElementById(`para ${id}`)
+  normalPara.style.textDecoration = 'none'
 }
 
 updateList()
