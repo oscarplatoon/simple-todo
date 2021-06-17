@@ -9,15 +9,26 @@
   <title>To Do List</title>
 </head>
 <body>
-  <div id='list title'>
-    This is the list title
+  <div id="left-side">
+    <div id='list-title'>
+      This is the list title
+    </div>
+    <div id='list-items'>
+      <ul>
+        <li>
+          testListItem
+        </li>
+      </ul>
+    </div>
   </div>
-  <div id='list items'>
-    <ul>
-      <li>
-        test
-      </li>
-    </ul>
+  <div id='right-side'>
+    This is where the list menu is:
+    <input id='add-item-text' type='text' placeholder="To Do Item Here"/>
+    <button id='submit item text' onclick='addItem()'>
+      Submit your To Do Item
+    </button>
   </div>
+
 </body>
 </html>
+
