@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- <script src= "/ES6_script/index.js"> -->
+    <script>
+      function addToList() {
+        var inputField = document.getElementById("add-list-item")
+        let grabItem = inputField.value
+        inputField.value = ""
+        //localstorage.len
+        
+        //for (elem in storedItems) {
+          //console.log(`${elem}: ${storedItems[elem]}`)
+        //}
+        console.log(grabItem)
+        //console.log(grabItem) // returns object {}
+          
+        }
+    </script>
+  
+  <title>To Do List</title>
+  
+</head>
+<body>
+ 
+    <div id="list-items">
+      <ul id='list'>
+        <li>Wake up</li>
+        <li>Eat Breakfast</li>
+        <li>Brush Teeth</li>
+      </ul>
+      <label for="task-list">Task List</label><br>
+      <input type="text" name="add-list-item" id="add-list-item" placeholder="Enter Task"><br>
+      <!-- Drop down menu for to add/remove item-->
+      <button onclick="addToList();" type="submit">Submit list item</button>
+    </div>
+  </div>
+</body>
+</html>
+
+<!-- //     for (const property in object) {
+  //   console.log(`${property}: ${object[property]}`);
+  // }
+  
+    //   const updateList = ()=> {
+    // console.log(storedItems);
+    // Grab items from ul? and stored as string 
+    // let listItems = document.getElementById('list-items').value = ""
+    // let newUnorderedList = document.createElement('ul'); -->
