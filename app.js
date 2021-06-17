@@ -49,7 +49,9 @@ const updateList = ()=> {
     // This holds the text with an ID (important for strike through)
     newPara = document.createElement('p')
     newPara.setAttribute('id', `para ${i}`)
-    newText = document.createTextNode(localStorage.getItem(`item ${i}`))
+    
+    newText = (document.createTextNode(localStorage.getItem(`item ${i}`)) || (document.createTextNode(localStorage.getItem(`item ${i} checked`))))
+    // Check if the key is "checked" and if so, strikeText for that block.
     newPara.appendChild(newText)
     newListItem.appendChild(newCheckBox)
     newListItem.appendChild(newPara)
@@ -60,12 +62,16 @@ const updateList = ()=> {
 const strikeText = (id) => {
   strikePara = document.getElementById(`para ${id}`)
   strikePara.style.textDecoration = 'line-through'
-  // text = strikePara.innerHTML //strikePara.firstChild.style.textDecoration('line-through')
+  storageVal = localStorage.getItem(`item ${id}`)
+  localStorage.setItem(`item ${id} checked`, storageVal)
+  localStorage.removeItem(`item ${id}`)
+
 }
 
 const normalText = (id) => {
   normalPara = document.getElementById(`para ${id}`)
   normalPara.style.textDecoration = 'none'
+
 }
 
 updateList()
