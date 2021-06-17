@@ -19,9 +19,7 @@ const addItem = () => {
 }
 
 
-const clearList = () => {}
-
-const updateList = ()=> {
+const updateList = () => {
   let unorderedList = document.getElementById('todo-list')
 
   // Empties the html list of old items.
@@ -57,9 +55,7 @@ const updateList = ()=> {
     newPara.setAttribute('id', `para ${i}`)
     
     newText = (document.createTextNode(localStorage.getItem(`item ${i}`)))
-    if(newText.length == 0) {
-      newText = document.createTextNode(localStorage.getItem(`item ${i} checked`))
-    }
+    console.log(localStorage.getItem(`item ${i} checked`))
     
     // Check if the key is "checked" and if so, strikeText for that block.
     if(localStorage.key(i) == `item ${i} checked`) {
@@ -95,3 +91,7 @@ const normalText = (id) => {
 }
 
 updateList()
+
+// Need to refactor this code to append "-complete" to the value part of the key value pair
+// Then check for the string to end with "-complete" to fire the check/uncheck logic
+// This code is breaking because we are deleting and rewriting key:value from localStorage
