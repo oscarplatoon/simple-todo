@@ -1,24 +1,32 @@
 var storedItems = []
+console.log(JSON.parse(localStorage.getItem('toDoItems')))
+// console.log(storedItems)
 /* This adds the text field as an item in the storedItems && the localStorage using JSON methods.
 */
+
+
 const addItem = () => {
   let toDoItem = document.getElementById('add-item-text').value;
-  storedItems.push(toDoItem);
-  localStorage.setItem('toDoItems', JSON.stringify(toDoItem))
-  return storedItems
+  // Used to generate unique keys for local storage:
+  numberItems = localStorage.length;
+  if(toDoItem.length === 0) {
+    return
+  }
+
+  localStorage.setItem('item '+(numberItems+1), toDoItem)
 }
 
 document.getElementById('submit-button').onclick = () => {
   console.log('CLICKED')
+  console.log('adding item')
   addItem();
+  console.log('updating html list')
   updateList();
+  document.getElementById('add-item-text').value = ""
 }
 
 const updateList = ()=> {
-
-  console.log(storedItems);
   let unorderedList = document.getElementById('todo-list')
-  console.log(unorderedList)
   // Empties the html list of old items.
   if (unorderedList) {
     while(unorderedList.firstChild) {
